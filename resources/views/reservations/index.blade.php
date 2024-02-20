@@ -31,7 +31,15 @@
                                         <td class="px-2 border-2">{{ $reservation->room_id }}</td>   
                                         <td class="px-2 border-2">{{ $reservation->date_start }}</td>
                                         <td class="px-2 border-2">{{ $reservation->date_end }}</td>
-                                        <td class="px-2 border-2 flex flex-col gap-y-1"><a class="bg-orange-500 w-[100%] text-white p-1 rounded text-center" href="{{ route('reservations.edit', $hotel->id) }}">Modifier</a><a class="bg-red-500 w-[100%] text-white p-1 rounded text-center" href="">Supprimer</a></td>
+                                        <td class="px-2 border-2 flex flex-col gap-y-1">
+                                            <a class="bg-orange-500 w-[100%] text-white p-1 rounded text-center" href="{{ route('reservations.edit', ['id' => $hotel->id, 'id_reservation' => $reservation->id_reservation]) }}">Modifier</a>
+                                            <form class="w-[48%]" action="{{ route('reservations.destroy', $hotel->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input type="hidden" value="{{ $reservation->id_reservation }}" name="id_reservation">
+                                                <button class="bg-red-500 w-[100%] text-white p-2 rounded" type="submit">Supprimer cet hotel</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

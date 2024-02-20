@@ -8,7 +8,7 @@
                             <figure>
                                 <img class="w-[23vw]" src="{{ $hotel->image }}">
                             </figure>
-                            <div>
+                            <div class="w-[23vw]">
                                 <h1 class="text-xl font-bold">{{ $hotel->name }}</h1>
                                 <p class="text-sm">{{ $hotel->description }}</p>
                                 <p class="text-sm">{{ $hotel->price }} € / nuit</p>

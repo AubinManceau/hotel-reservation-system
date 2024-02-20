@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Reservations extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'id_reservation';
     
     protected $fillable = [
-        'id_reservation',
         'client_lastname',
         'client_firstname',
         'client_email',
@@ -20,4 +21,9 @@ class Reservations extends Model
         'date_start',
         'date_end'
     ];
+
+    public function hotels()
+    {
+        return $this->belongsTo(Hotels::class);
+    }
 }

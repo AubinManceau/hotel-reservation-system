@@ -34,11 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/{id}/reservations', [ReservationsController::class, 'index'])->name('reservations.index');
     Route::get('/dashboard/{id}/reservations/create', [ReservationsController::class, 'create'])->name('reservations.create');
     Route::post('/dashboard/{id}/reservations/create', [ReservationsController::class, 'store'])->name('reservations.store');
-    Route::get('/dashboard/{id}/reservations/edit', [ReservationsController::class, 'edit'])->name('reservations.edit');
-    Route::put('/dashboard/{id}/reservations/update', [ReservationsController::class, 'update'])->name('reservations.update');
+    Route::get('/dashboard/{id}/reservations/{id_reservation}/edit', [ReservationsController::class, 'edit'])->name('reservations.edit');
+    Route::put('/dashboard/{id}/reservations/{id_reservation}/update', [ReservationsController::class, 'update'])->name('reservations.update');
     Route::delete('/dashboard/{id}/reservations', [ReservationsController::class, 'destroy'])->name('reservations.destroy');
-
-    // HOTELS
 
 
     // PROFIL

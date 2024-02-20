@@ -17,4 +17,9 @@ class Hotels extends Model
         'nb_rooms',
         'price'
     ];
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservations::class);
+    }
 }

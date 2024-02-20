@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('client_firstname');
             $table->string('client_email');
             $table->string('client_phone');
-            $table->string('hotel_id');
+            $table->unsignedBigInteger('hotel_id');
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
             $table->string('room_id');
             $table->date('date_start');
             $table->date('date_end');

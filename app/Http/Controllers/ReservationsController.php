@@ -23,19 +23,23 @@ class ReservationsController extends Controller
 
     public function store(Request $request, $id)
     {
+        $hotel = Hotels::find($id);
         $reservations = Reservations::create($request->all());
-        return redirect()->route('reservations.index', $id);
+        return redirect()->route('reservations.index', $hotel->id);
     }
 
-    public function edit($id_reservations)
+    public function edit($id, $id_reservation)
     {
-        $reservations = Reservations::find($id_reservations);
-        return view('reservations.edit', compact('reservations'));
+        $hotel = Hotels::find($id);
+        // dd($id_reservation, $id);
+        $reservations = Reservations::find($id_reservation);
+        return view('reservations.edit', compact('reservations', 'hotel'));
     }
 
-    public function update(Request $request, $id_reservations)
+    public function update(Request $request, $id, $id_reservation)
     {
-        $reservations = Reservations::find($id_reservations);
+        $hotel = Hotels::find($id);
+        $reservations = Reservations::find($id_reservation);
         $reservations->client_lastname = $request->get('client_lastname');
         $reservations->client_firstname = $request->get('client_firstname');
         $reservations->client_email = $request->get('client_email');
@@ -45,6 +49,15 @@ class ReservationsController extends Controller
         $reservations->date_end = $request->get('date_end');
         $reservations->save();
 
-        return redirect()->route('reservations.index', $id_reservations);
+        return redirect()->route('reservations.index', $id);
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        $hotel = Hotels::find($id);
+        $reservations = Reservations::find($request->get('id_reservation'));
+        $reservations->delete();
+
+        return redirect()->route('reservations.index', $id);
     }
 }
