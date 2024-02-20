@@ -20,6 +20,15 @@ class HotelsController extends Controller
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => ['required'],
+            'location' => ['required'],
+            'description' => ['required'],
+            'image' => ['required'],
+            'nb_rooms' => ['required', 'numeric'],
+            'price' => ['required', 'numeric']
+        ]);
+
         $hotels = Hotels::create($request->all());
         return redirect()->route('dashboard');
     }
@@ -32,12 +41,23 @@ class HotelsController extends Controller
 
     public function edit($id)
     {
+
         $hotel = Hotels::find($id);
         return view('hotels.edit', compact('hotel'));
     }
 
     public function update(Request $request, $id)
     {
+
+        $validatedData = $request->validate([
+            'name' => ['required'],
+            'location' => ['required'],
+            'description' => ['required'],
+            'image' => ['required'],
+            'nb_rooms' => ['required', 'numeric'],
+            'price' => ['required', 'numeric']
+        ]);
+
         $hotel = Hotels::find($id);
         $hotel->name = $request->get('name');
         $hotel->description = $request->get('description');

@@ -23,6 +23,17 @@ class ReservationsController extends Controller
 
     public function store(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'client_lastname' => ['required', 'max:255'],
+            'client_firstname' => ['required', 'max:255'],
+            'client_email' => ['required', 'email'],
+            'client_phone' => ['required', 'numeric', 'digits:10'],
+            'hotel_id' => ['required', 'numeric'],
+            'room_id' => ['required', 'numeric'],
+            'date_start' => ['required', 'date'],
+            'date_end' => ['required', 'date', 'after:date_start'],
+        ]);
+
         $hotel = Hotels::find($id);
         $reservations = Reservations::create($request->all());
         return redirect()->route('reservations.index', $hotel->id);
@@ -38,6 +49,17 @@ class ReservationsController extends Controller
 
     public function update(Request $request, $id, $id_reservation)
     {
+        $validatedData = $request->validate([
+            'client_lastname' => ['required', 'max:255'],
+            'client_firstname' => ['required', 'max:255'],
+            'client_email' => ['required', 'email'],
+            'client_phone' => ['required', 'numeric', 'digits:10'],
+            'hotel_id' => ['required', 'numeric'],
+            'room_id' => ['required', 'numeric'],
+            'date_start' => ['required', 'date'],
+            'date_end' => ['required', 'date', 'after:date_start'],
+        ]);
+
         $hotel = Hotels::find($id);
         $reservations = Reservations::find($id_reservation);
         $reservations->client_lastname = $request->get('client_lastname');
