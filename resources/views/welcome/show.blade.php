@@ -23,26 +23,31 @@
                 </div>
             @endif
         </div>
-        <div class="py-6">
+        <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900 flex justify-between flex-wrap">
-                        @foreach ($hotels as $hotel)
-                            <a href="{{ route('welcome.show', $hotel->id) }}">
-                                <figure>
-                                    <img class="w-[23vw]" src="{{ $hotel->image }}">
-                                </figure>
-                                <div class="w-[23vw]">
-                                    <h1 class="text-xl font-bold">{{ $hotel->name }}</h1>
-                                    <p class="text-sm">{{ $hotel->description }}</p>
-                                    <p class="text-sm">{{ $hotel->price }} € / nuit</p>
+                    <div class="p-6 text-gray-900 flex justify-between">
+                        <figure>
+                            <img class="w-[40vw]" src="{{$hotel->image}}">
+                        </figure>
+                        <div class="w-[30vw] flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between mb-5">
+                                    <h1 class="font-bold text-xl">{{$hotel->name}}</h1>
+                                    <p>{{$hotel->location}}</p>
                                 </div>
-                            </a>
-                        @endforeach
+                                <p class="mb-5">{{$hotel->description}}</p>
+                                <p>{{$hotel->nb_rooms}} chambres</p>
+                                <p>{{$hotel->price}} € / nuit</p>
+                            </div>
+                            <div>
+                                <a class="bg-blue-500 text-white p-2 rounded flex justify-center" href="{{ route('welcome.create', $hotel->id) }}">Réserver</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>          
+        </div>
     </div>
 </body>
 </html>

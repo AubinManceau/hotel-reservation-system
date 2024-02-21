@@ -30,7 +30,7 @@ class ReservationsController extends Controller
             'client_phone' => ['required', 'numeric', 'digits:10'],
             'hotel_id' => ['required', 'numeric'],
             'room_id' => ['required', 'numeric'],
-            'date_start' => ['required', 'date'],
+            'date_start' => ['required', 'date', 'after_or_equal:today'],
             'date_end' => ['required', 'date', 'after:date_start'],
         ]);
 

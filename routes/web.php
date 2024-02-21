@@ -16,11 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HotelsController::class, 'welcome'])->name('welcome');
+Route::get('/{id}/show', [HotelsController::class, 'welcomeShow'])->name('welcome.show');
+Route::get('/{id}/create', [HotelsController::class, 'welcomeCreate'])->name('welcome.create');
+Route::post('/{id}/create', [HotelsController::class, 'welcomeStore'])->name('welcome.store');
 
 Route::middleware('auth')->group(function () {
+
     // DASHBOARD
     Route::get('/dashboard', [HotelsController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/create', [HotelsController::class, 'create'])->name('hotels.create');
