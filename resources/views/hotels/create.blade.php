@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{ route('hotels.store') }}" method="POST" class="flex flex-col w-[100%]">
+                    <form action="{{ route('hotels.store') }}" method="POST" class="flex flex-col w-[100%]" enctype="multipart/form-data">
                         @csrf
 
                         @if($errors->has('name'))
@@ -24,7 +24,7 @@
                         @if($errors->has('image'))
                             <p class="text-red-500">Veuillez vérifier le champ "Url de l'image"</p>
                         @endif
-                        <input value="{{ old('image') }}" placeholder="Url de l'image" type="text" name="image" id="image" class="w-[50%] p-1 border border-gray-400">
+                        <input value="{{ old('image') }}" placeholder="Url de l'image" type="file" name="image" id="image" class="w-[50%] p-1 border border-gray-400">
 
                         @if($errors->has('nb_rooms'))
                             <p class="text-red-500">Veuillez vérifier le champ "Nombre de chambres"</p>

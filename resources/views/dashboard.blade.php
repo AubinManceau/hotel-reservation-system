@@ -4,9 +4,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 flex justify-between flex-wrap">
                     @foreach ($hotels as $hotel)
-                        <a href="{{ route('hotels.show', $hotel->id) }}">
+                        <a class="pb-5" href="{{ route('hotels.show', $hotel->id) }}">
                             <figure>
-                                <img class="w-[23vw]" src="{{ $hotel->image }}">
+                                <img class="w-[23vw]" src="./image/{{ $hotel->image }}">
                             </figure>
                             <div class="w-[23vw]">
                                 <h1 class="text-xl font-bold">{{ $hotel->name }}</h1>

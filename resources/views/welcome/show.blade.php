@@ -28,7 +28,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 flex justify-between">
                         <figure>
-                            <img class="w-[40vw]" src="{{$hotel->image}}">
+                            <img class="w-[40vw]" src="../image/{{ $hotel->image }}">
                         </figure>
                         <div class="w-[30vw] flex flex-col justify-between">
                             <div>

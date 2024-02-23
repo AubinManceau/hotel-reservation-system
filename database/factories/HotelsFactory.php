@@ -20,7 +20,7 @@ class HotelsFactory extends Factory
             'name' => fake()->name(),
             'location' => fake()->city(),
             'description' => fake()->text(),
-            'image' => fake()->imageUrl(),
+            'image' => '20240221123810.webp',
             'nb_rooms' => fake()->numberBetween(1, 100),
             'price' => fake()->numberBetween(50, 500),
         ];

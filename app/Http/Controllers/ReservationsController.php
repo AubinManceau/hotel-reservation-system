@@ -34,6 +34,18 @@ class ReservationsController extends Controller
             'date_end' => ['required', 'date', 'after:date_start'],
         ]);
 
+        $existingReservation = Reservations::where('room_id', $request->room_id)
+        ->where(function ($query) use ($request) {
+            $query->whereBetween('date_start', [$request->date_start, $request->date_end]);
+        })
+        ->first();
+
+        if ($existingReservation) {
+            $errors = new \Illuminate\Support\MessageBag;
+            $errors->add('room_id', 'Cette chambre est déjà réservée pour cette période.');
+            return redirect()->back()->withErrors($errors)->withInput();
+        }
+
         $hotel = Hotels::find($id);
         $reservations = Reservations::create($request->all());
         return redirect()->route('reservations.index', $hotel->id);
@@ -42,7 +54,6 @@ class ReservationsController extends Controller
     public function edit($id, $id_reservation)
     {
         $hotel = Hotels::find($id);
-        // dd($id_reservation, $id);
         $reservations = Reservations::find($id_reservation);
         return view('reservations.edit', compact('reservations', 'hotel'));
     }
@@ -59,6 +70,18 @@ class ReservationsController extends Controller
             'date_start' => ['required', 'date'],
             'date_end' => ['required', 'date', 'after:date_start'],
         ]);
+
+            $existingReservation = Reservations::where('room_id', $request->room_id)
+            ->where(function ($query) use ($request) {
+                $query->whereBetween('date_start', [$request->date_start, $request->date_end]);
+            })
+            ->first();
+
+            if ($existingReservation) {
+                $errors = new \Illuminate\Support\MessageBag;
+                $errors->add('room_id', 'Cette chambre est déjà réservée pour cette période.');
+                return redirect()->back()->withErrors($errors)->withInput();
+            }
 
         $hotel = Hotels::find($id);
         $reservations = Reservations::find($id_reservation);

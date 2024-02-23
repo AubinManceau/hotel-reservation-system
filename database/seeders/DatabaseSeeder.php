@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('Am12102004'),
         ]);
 
-        \App\Models\Hotels::factory(10)->create();
+        // \App\Models\Hotels::factory(10)->create();
 
-        \App\Models\Reservations::factory(100)->create();
+        // \App\Models\Reservations::factory(100)->create();
     }
 }

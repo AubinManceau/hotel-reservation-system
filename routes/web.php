@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\HotelsController;
 use App\Http\Controllers\ReservationsController;
 use App\Http\Controllers\ProfileController;
@@ -16,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HotelsController::class, 'welcome'])->name('welcome');
-Route::get('/{id}/show', [HotelsController::class, 'welcomeShow'])->name('welcome.show');
-Route::get('/{id}/create', [HotelsController::class, 'welcomeCreate'])->name('welcome.create');
-Route::post('/{id}/create', [HotelsController::class, 'welcomeStore'])->name('welcome.store');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/{id}/show', [WelcomeController::class, 'show'])->name('welcome.show');
+Route::get('/{id}/reservation', [WelcomeController::class, 'create'])->name('welcome.create');
+Route::post('/{id}/reservation', [WelcomeController::class, 'store'])->name('welcome.store');
 
 Route::middleware('auth')->group(function () {
 
